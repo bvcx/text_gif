@@ -1,5 +1,6 @@
 <% if valid(@search_text) %>
   <% if valid(@phone_number) %>
+    <p><%= img(call_giphy(@search_text)) %></p>
     Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".
   <% else %>
     Please enter a valid phone number.
