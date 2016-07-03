@@ -1,5 +1,13 @@
 require 'sinatra'
 
 get '/' do
-  puts 'hello world'
+  @search_text = params['s']
+  @phone_number = params['p']
+  erb :index
+end
+
+post '/' do
+  @search_text = params['s']
+  @phone_number = params['p']
+  erb :index
 end

@@ -1,0 +1,11 @@
+<% if @search_text %>
+  <% if @phone_number %>
+    Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".
+  <% else %>
+    Please enter a valid phone number.
+  <% end %>
+<% else %>
+  Please enter valid search text.
+<% end %>
+
+<%= erb :form %>
