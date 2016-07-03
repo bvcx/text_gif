@@ -1,5 +1,5 @@
-<% if @search_text %>
-  <% if @phone_number %>
+<% unless @search_text.nil? || @search_text.empty? %>
+  <% unless @phone_number.nil? || @phone_number.empty? %>
     Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".
   <% else %>
     Please enter a valid phone number.
