@@ -11,3 +11,9 @@ post '/' do
   @phone_number = params['p']
   erb :index
 end
+
+helpers do
+  def valid(text)
+    !(text.nil? || text.empty?)
+  end
+end
