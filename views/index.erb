@@ -1,17 +1,17 @@
-<% if valid(@search_text) %>
-  <% if valid(@phone_number) %>
-    <% handle_response(call_giphy(@search_text)) %>
-    <% if valid(@full_gif) %>
-      <p><%= img(@full_gif) %></p>
-      Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".
-    <% else %>
-      No results for search text "<%= @search_text %>".
-    <% end %>
+<% if @search_text %>
+  <% handle_response(call_giphy(@search_text)) %>
+  <% if @full_gif %>
+    <p><%= img(@full_gif) %></p>
   <% else %>
-    Please enter a valid phone number.
+    <p>No results for search text "<%= @search_text %>".</p>
+  <% end %>
+  <% if @phone_number && @full_gif %>
+    <p>Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".</p>
+  <% else %>
+    <p>Enter a valid phone number to send a gif as a text message.</p>
   <% end %>
 <% else %>
-  Please enter valid search text.
+  <p>Please enter valid search text.</p>
 <% end %>
 
 <%= erb :form %>
