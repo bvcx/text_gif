@@ -5,9 +5,12 @@
   <% else %>
     <p>No results for search text "<%= @search_text %>".</p>
   <% end %>
-  <% if @full_gif && @phone_number %>
-    <% send_gif(@small_gif, @phone_number) %>
-    <p>Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".</p>
+  <% if @small_gif && @phone_number %>
+    <% if send_gif(@small_gif, @phone_number) %>
+      <p>Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".</p>
+    <% else %>
+      <p>Something went wrong. Try another search, or phone number?</p>
+    <% end %>
   <% else %>
     <p>Enter a valid phone number to send a gif as a text message.</p>
   <% end %>
