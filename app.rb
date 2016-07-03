@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'net/http'
 require 'json'
+require_relative './lib/messenger'
 
 get '/' do
   @search_text = valid_search(params['s'])
@@ -23,7 +24,7 @@ helpers do
 
   def valid_phone(phone)
     return nil if phone.nil?
-    phone.gsub!(/[^1-9]/, "")
+    phone.gsub!(/[^0-9]/, "")
     return "+1" + phone if phone.length == 10
     return "+" + phone if phone.length == 11 && phone.start_with?(1)
     return nil
@@ -46,5 +47,9 @@ helpers do
     return nil if response['data'].empty?
     @full_gif = response['data'][0]['images']['original']['url']
     @small_gif = response['data'][0]['images']['fixed_width']['url']
+  end
+
+  def send_gif(image_url, phone_number)
+    Messenger.send_url(image_url, phone_number)
   end
 end
