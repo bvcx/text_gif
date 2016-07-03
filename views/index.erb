@@ -1,3 +1,5 @@
+<% #TODO: move logic out of views? not sure what the right way to do this is %>
+<% #TODO: investigate using flash messages %>
 <% if @search_text %>
   <% handle_response(call_giphy(@search_text)) %>
   <% if @full_gif %>

@@ -2,6 +2,8 @@ require 'yaml'
 require 'twilio-ruby'
 
 module Messenger
+
+  #TODO: consider setting up the client outside this method, so that it can be reused for subsequent calls
   def self.send_url(image_url, phone_number)
     return false if environment_not_set_up
     client = Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])

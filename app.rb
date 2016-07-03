@@ -3,6 +3,8 @@ require 'net/http'
 require 'json'
 require_relative './lib/messenger'
 
+#TODO: investigate "modular sinatra"
+#TODO: figure out how to consolidate these two routes, or make them more distinct
 get '/' do
   @search_text = valid_search(params['s'])
   @phone_number = valid_phone(params['p'])
@@ -15,6 +17,8 @@ post '/' do
   erb :index
 end
 
+#TODO: pull helpers out into another file / investigate other architectural options
+#c.f. blog.sourcing.io/structuring-sinatra
 helpers do
   def valid_search(search)
     return nil if search.nil?
@@ -43,12 +47,14 @@ helpers do
     result
   end
 
+  #TODO: possibly incorporate this into call_giphy?
   def handle_response(response)
     return nil if response['data'].empty?
     @full_gif = response['data'][0]['images']['original']['url']
     @small_gif = response['data'][0]['images']['fixed_width']['url']
   end
 
+  #TODO: make this method do something, or get rid of it
   def send_gif(image_url, phone_number)
     Messenger.send_url(image_url, phone_number)
   end
