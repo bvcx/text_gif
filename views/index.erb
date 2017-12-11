@@ -4,19 +4,19 @@
   <% handle_response(call_giphy(@search_text)) %>
   <% if @full_gif %>
     <p><%= img(@full_gif) %></p>
-  <% else %>
+  <% else %><% #@full_gif is nil %>
     <p>No results for search text "<%= @search_text %>".</p>
   <% end %>
   <% if @small_gif && @phone_number %>
     <% if send_gif(@small_gif, @phone_number) %>
       <p>Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".</p>
-    <% else %>
+    <% else %><% #send_gif failed; probably environment variables weren't initialized %>
       <p>Something went wrong. Try another search, or phone number?</p>
     <% end %>
-  <% else %>
+  <% else %><% #@small_gif or @phone_number is nil %>
     <p>Enter a valid phone number to send a gif as a text message.</p>
   <% end %>
-<% else %>
+<% else %><% #@search_text is nil %>
   <p>Please enter valid search text.</p>
 <% end %>
 
