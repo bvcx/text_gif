@@ -1,5 +1,4 @@
-#TODO: pull helpers out into another file / investigate other architectural options
-#c.f. blog.sourcing.io/structuring-sinatra
+#TODO: I moved these helper methods to their own file, but I'm not sure this is clearer / idiomatic. Perhaps revert.
 helpers do
   def valid_search(search)
     return nil if search.nil?
@@ -24,15 +23,15 @@ helpers do
     url = "http://api.giphy.com/v1/gifs/search?q=#{search_text}&api_key=dc6zaTOxFJmzC&limit=1"
     response = Net::HTTP.get_response(URI.parse(url))
     buffer = response.body
-    result = JSON.parse(buffer)
-    result
+    JSON.parse(buffer)['data']
   end
 
-  #TODO: possibly incorporate this into call_giphy?
-  def handle_response(response)
-    return nil if response['data'].empty?
-    @full_gif = response['data'][0]['images']['original']['url']
-    @small_gif = response['data'][0]['images']['fixed_width']['url']
+  def full_gif
+    @results[0]['images']['original']['url']
+  end
+
+  def small_gif
+    @results[0]['images']['fixed_width']['url']
   end
 
   def send_gif(image_url, phone_number)
