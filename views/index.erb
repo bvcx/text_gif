@@ -1,23 +1,8 @@
-<% #TODO: investigate using flash messages %>
-<% if @search_text.nil? %>
-  <p>Please enter valid search text.</p>
-<% else %><% # search text is valid %>
-  <% if @results.empty? %>
-    <p>No results for search text "<%= @search_text %>".</p>
-  <% else %><% # results non-empty %>
-    <p><%= img(full_gif) %></p>
-  <% end %>
-  <% if @phone_number.nil? %>
-    <p>Enter a valid phone number to send a gif as a text message.</p>
-  <% else %> <% # phone number is valid %>
-    <% if @gif_sent %>
-      <p>Sent gif related to search text "<%= @search_text %>" to phone number "<%= @phone_number %>".</p>
-    <% else %><% # send_gif failed; probably environment variables weren't initialized %>
-	  <% #TODO: consider not allowing phone numbers to be input if environment variables weren't initialized %>
-	  <% # this could distinguish giphy errors from env errors %>
-      <p>Something went wrong. Try another search, or phone number?</p>
-    <% end %>
-  <% end %>
+<% if @results && !@results.empty? %>
+  <p><%= img(full_gif) %></p>
 <% end %>
+
+<% #TODO: Investigate using flash messages. %>
+<p><%= @message %></p>
 
 <%= erb :form %>

@@ -14,6 +14,12 @@ Here's their prompt:
 
 For the project to work, you need to export these environment variables with appropriate values.
 
+To run the app, open a terminal, navigate to the directory, export these environment variables, and run:
+
+`> bundle exec ruby app.rb`
+
+The server will listen on localhost:4567 by default.
+
 I had not used Sinatra, Twilio, Giphy, or Heroku prior to doing this project. They all seem very minimalist, so I think I'm using them correctly, but without feedback my code may not be idiomatic.
 
 I originally started this project during the summer of 2016, but decided not to actually apply until winter of 2017 (hence the long pause in commit history).
