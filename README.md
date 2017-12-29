@@ -7,7 +7,9 @@ Here's their prompt:
 > Create an application that allows users to enter search text and a phone number. Your application will send a text message to that number with a related gif. We recommend using the Sinatra web application framework, the Twilio API for texting and the Giphy API. Please use our paid Twilio account, which will allow you to send messages to arbitrary numbers.
 >
 > TWILIO\_ACCOUNT\_SID=`<redacted>`
+>
 > TWILIO\_AUTH\_TOKEN=`<redacted>`
+>
 > TWILIO\_FROM\_NUMBER=`<redacted>`
 >
 > We don't expect perfection. We use this code sample to understand how you solve problems. Describe any notable software design decisions and next steps you would take if you were to develop this application further.
